@@ -1,0 +1,29 @@
+name: Palindrome Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  test:
+    runs-on: ubuntu-latest # Use latest Ubuntu runner
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set Up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Adjust Node.js version as needed
+
+      - name: Install Dependencies
+        run: npm install  # Ensure dependencies are installed
+
+      - name: Run Tests
+        run: npm test # Run Jest tests
